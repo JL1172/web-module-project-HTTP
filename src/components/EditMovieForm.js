@@ -3,9 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
+import { getMovieById } from './actions/axiosActions';
 
 const EditMovieForm = (props) => {
   const navigate = useNavigate();
+  const {id} = useParams();
 
   const { setMovies } = props;
   const [movie, setMovie] = useState({
@@ -15,6 +17,16 @@ const EditMovieForm = (props) => {
     metascore: 0,
     description: ""
   });
+
+  useEffect(()=> {
+      getMovieById(id).then(res=> {
+        console.log(res.data)
+        setMovie({...movie, title : res.data.title,
+        director : res.data.director,
+      genre : res.data.genre, metascore : res.data.metascore,
+    description : res.data.description})
+      })
+  },[])
 
   const handleChange = (e) => {
     setMovie({
