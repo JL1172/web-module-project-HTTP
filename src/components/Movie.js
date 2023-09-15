@@ -24,7 +24,8 @@ const Movie = (props) => {
       setMovie(res.data);
     })
   }
-  const modifiedDelete = (id) => {
+  const modifiedDelete = (e) => {
+    e.preventDefault();
       props.deleteMovie(id,mainHandler); 
       navigate("/movies")
       setVisible(false)
@@ -64,7 +65,7 @@ const Movie = (props) => {
               <span className="m-2 btn btn-dark">Favorite</span>
               <Link to={`/movies/edit/${movie.id}`} className="m-2 btn btn-success">Edit</Link>
               <span className="delete"><input type="button" className="m-2 btn btn-danger" value="Delete" onClick={firstStepInDelete} />
-              {visible && <DeleteMovieModal modifiedDelete = {modifiedDelete} id = {id} mainHandler = {mainHandler}/>}
+              {visible ? <DeleteMovieModal modifiedDelete = {modifiedDelete}/> : ""}
               </span>
             </section>
           </div>

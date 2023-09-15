@@ -15,7 +15,7 @@ const DeleteMovieModal = (props) => {
           </div>
           <div className="modal-footer">
             <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-            <input type="submit" className="btn btn-danger" value="Delete" onClick={props.modifiedDelete(props.id,props.mainHandler)}/>
+            <input type="submit" className="btn btn-danger" value="Delete" onClick={(e)=> props.modifiedDelete(e)} />
           </div>
         </form>
       </div>
