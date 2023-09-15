@@ -27,8 +27,9 @@ const App = (props) => {
     })
   }
 
-  const deleteMovie = (id) => {
+  const deleteMovie = (id,handler) => {
     deleteMv(id).then(()=> {
+      handler();
       fetchMovies();
     })
   }
@@ -51,7 +52,7 @@ const App = (props) => {
           <Routes>
             <Route path="movies/edit/:id" element = {<EditMovieForm fetchMovies = {fetchMovies}/>} />
 
-            <Route path="movies/:id" element ={< Movie/>} />
+            <Route path="movies/:id" element ={< Movie deleteMovie = {deleteMovie} />} />
 
             <Route path="movies" element={<MovieList movies={movies} />} />
 
