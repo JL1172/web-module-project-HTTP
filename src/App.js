@@ -24,6 +24,7 @@ const App = (props) => {
    const fetchMovies = () => {
     getMovies()
     .then(res=> {
+      console.log(res)
       setMovies(res.data)
     })
   }
@@ -36,11 +37,15 @@ const App = (props) => {
   }
 
   const addMovie = (movieObject) => {
-    addMv(movieObject).then(res=> {
+    addMv(movieObject).then(()=> {
       fetchMovies(); 
     });
   }
 
+  const favorite = (id) => {
+    const filteredList = movies.filter(n=> n.id === id); 
+    setFavoriteMovies([...favoriteMovies, ...filteredList])
+  }
   return (
     <div>
       <nav className="navbar navbar-dark bg-dark">
@@ -57,7 +62,7 @@ const App = (props) => {
             
             <Route path="movies/add" element = {< AddMovieForm addMovie = {addMovie} fetchMovies = {fetchMovies}/>} />
 
-            <Route path="movies/:id" element ={< Movie deleteMovie = {deleteMovie} />} />
+            <Route path="movies/:id" element ={< Movie deleteMovie = {deleteMovie} favorite = {favorite} />} />
 
             <Route path="movies" element={<MovieList movies={movies} />} />
 
