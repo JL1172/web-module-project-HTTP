@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const FavoriteMovieList = (props) => {
-  const { favoriteMovies } = props;
+  let {favoriteMovies} = props;
 
   return (<div className="col-xs savedContainer">
     <h5>Favorite Movies</h5>

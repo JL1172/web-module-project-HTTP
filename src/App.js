@@ -24,7 +24,6 @@ const App = (props) => {
    const fetchMovies = () => {
     getMovies()
     .then(res=> {
-      console.log(res)
       setMovies(res.data)
     })
   }
@@ -44,7 +43,12 @@ const App = (props) => {
 
   const favorite = (id) => {
     const filteredList = movies.filter(n=> n.id === id); 
+    const checker = favoriteMovies.filter(n => n.id === id); 
+    if (checker && checker.length > 0) {
+      return;
+    } else {
     setFavoriteMovies([...favoriteMovies, ...filteredList])
+    }
   }
   return (
     <div>
