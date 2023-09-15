@@ -11,6 +11,7 @@ import FavoriteMovieList from './components/FavoriteMovieList';
 import axios from 'axios';
 import { addMv, deleteMv, getMovies } from "./components/actions/axiosActions";
 import EditMovieForm from "./components/EditMovieForm";
+import AddMovieForm from "./components/AddMovieForm";
 
 const App = (props) => {
   const [movies, setMovies] = useState([]);
@@ -38,6 +39,10 @@ const App = (props) => {
     addMv();
   }
 
+  const addMovie = (movieObject) => {
+    addMv(movieObject);
+  }
+
   return (
     <div>
       <nav className="navbar navbar-dark bg-dark">
@@ -51,6 +56,8 @@ const App = (props) => {
 
           <Routes>
             <Route path="movies/edit/:id" element = {<EditMovieForm fetchMovies = {fetchMovies}/>} />
+            
+            <Route path="movies/add" element = {< AddMovieForm addMovie = {addMovie} fetchMovies = {fetchMovies}/>} />
 
             <Route path="movies/:id" element ={< Movie deleteMovie = {deleteMovie} />} />
 

@@ -24,6 +24,7 @@ const Movie = (props) => {
   }
   const modifiedDelete = (id) => {
       props.deleteMovie(id,mainHandler); 
+      navigate("/movies")
   }
   return (<div className="modal-page col">
     <div className="modal-dialog">
