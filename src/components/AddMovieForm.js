@@ -60,7 +60,7 @@ const AddMovieForm = (props) => {
                     </div>
                     <div className="modal-footer">
                         <input type="submit" className="btn btn-info" value="Save" />
-                        <Link to={`/movies/1`}><input type="button" className="btn btn-default" value="Cancel" /></Link>
+                        <Link to={`/movies`}><input type="button" className="btn btn-default" value="Cancel" /></Link>
                     </div>
                 </form>
             </div>

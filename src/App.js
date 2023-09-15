@@ -35,12 +35,10 @@ const App = (props) => {
     })
   }
 
-  const addToFavorites = (movie) => {
-    addMv();
-  }
-
   const addMovie = (movieObject) => {
-    addMv(movieObject);
+    addMv(movieObject).then(res=> {
+      fetchMovies(); 
+    });
   }
 
   return (
