@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
-import { getMovieById } from './actions/axiosActions';
+import { getMovieById, putMovie } from './actions/axiosActions';
 
 const EditMovieForm = (props) => {
   const navigate = useNavigate();
@@ -19,14 +19,17 @@ const EditMovieForm = (props) => {
   });
 
   useEffect(()=> {
-      getMovieById(id).then(res=> {
-        console.log(res.data)
-        setMovie({...movie, title : res.data.title,
-        director : res.data.director,
-      genre : res.data.genre, metascore : res.data.metascore,
-    description : res.data.description})
-      })
+      mainFetchHandler();
   },[])
+
+  const mainFetchHandler = () => {
+    getMovieById(id).then(res=> {
+      setMovie({...movie, title : res.data.title,
+      director : res.data.director,
+    genre : res.data.genre, metascore : res.data.metascore,
+  description : res.data.description})
+    })
+  }
 
   const handleChange = (e) => {
     setMovie({
@@ -37,13 +40,11 @@ const EditMovieForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:9000/api/movies/${id}`, movie)
-      .then(res => {
-        setMovies(res.data);
-        navigate(`/movies/${movie.id}`);
-      })
-      .catch(err => {
-        console.log(err);
+    putMovie(id,movie)
+      .then(() => {
+        mainFetchHandler();
+        props.fetchMovies(); 
+        navigate(`/movies/${id}`);
       })
   }
 

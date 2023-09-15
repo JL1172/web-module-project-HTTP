@@ -20,7 +20,7 @@ const App = (props) => {
     fetchMovies();
   }, []);
 
-  const fetchMovies = () => {
+   const fetchMovies = () => {
     getMovies()
     .then(res=> {
       setMovies(res.data)
@@ -49,7 +49,7 @@ const App = (props) => {
           <FavoriteMovieList favoriteMovies={favoriteMovies} />
 
           <Routes>
-            <Route path="movies/edit/:id" element = {<EditMovieForm/>} />
+            <Route path="movies/edit/:id" element = {<EditMovieForm fetchMovies = {fetchMovies}/>} />
 
             <Route path="movies/:id" element ={< Movie/>} />
 

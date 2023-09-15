@@ -19,5 +19,11 @@ export const deleteMv = (id) => {
 }
 
 export const addMv = movie => {
-    return axios.post(baseUrl, movie); 
+    return axios.post(baseUrl, movie)
+    .catch(err=> console.error(err.message)); 
+}
+
+export const putMovie = (id,modified) => {
+    return axios.put(`${baseUrl}/${id}`, modified)
+    .catch(err=> console.error(err.message)); 
 }
